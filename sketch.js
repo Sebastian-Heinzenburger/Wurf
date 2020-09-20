@@ -8,7 +8,7 @@ function setup() {
 
     // canvas.parent(group);
 
-    velocityS = createSlider(0, 1000, 100);
+    velocityS = createSlider(1, 1000, 100);
     velocityS.position(0, 0, "relative");
     velocityS.parent(group);
 
@@ -16,7 +16,7 @@ function setup() {
     gravitationalConstantS.parent(group);
     gravitationalConstantS.position(0, 20, "relative");
 
-    heightS = createSlider(0, 373, 20);
+    heightS = createSlider(0, windowHeight/1.2, 20);
     heightS.position(0, 40, "relative");
     heightS.parent(group);
 
@@ -46,6 +46,12 @@ function draw() {
         y = - 0.5 * gravitationalConstant * Math.pow(x/velocity, 2) + height;
         y = windowHeight - y;
         ellipse(x, y, SIZE, SIZE);
+        if (x % 100 == 0) {
+            text(x, x, windowHeight-5)
+        }
+   }
+   for (let y = 0; y < windowHeight/1.2; y+=100) {
+        text(y, 0, windowHeight - y - 5);
    }
    
 }
