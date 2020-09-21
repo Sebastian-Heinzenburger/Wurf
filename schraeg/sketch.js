@@ -2,7 +2,7 @@ var SIZE = 5;
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
-  
+
     group = createDiv((''));
     group.position(10, 10, "relative");
 
@@ -33,15 +33,22 @@ function _cos(d) {
 }
 
 function draw() {
+    background(60);
 
     gravitationalConstant = gravitationalConstantS.value();
     velocity = velocityS.value();
     height = heightS.value();
 
-    if (windowHeight - mouseY < height) return;
-    a = degrees(acos(mouseX / dist(0, windowHeight-height, mouseX, mouseY)));
+    if (windowHeight - mouseY > height) {
+      a = degrees(acos(mouseX / dist(0, windowHeight-height, mouseX, mouseY)));
+      stroke(0, 120, 215);
+    } else {
+      a = 0;
+      stroke(255, 0, 0);
+    }
+    strokeWeight(1);
+    line(0, windowHeight-height, mouseX, mouseY);
 
-    background(60);
     noStroke();
     fill(0, 120, 215);
     textSize(16);
@@ -65,9 +72,6 @@ function draw() {
 
    text("Degrees: " + a.toFixed(1) + "°", position + 300, 30);
 
-   stroke(0, 120, 215);
-   strokeWeight(1);
-   line(0, windowHeight-height, mouseX, mouseY);
-   
-   
+
+
 }
